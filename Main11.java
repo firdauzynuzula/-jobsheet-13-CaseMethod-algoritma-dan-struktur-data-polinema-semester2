@@ -6,7 +6,7 @@ public class Main11 {
         AntrianPembeli antrian = new AntrianPembeli();
         DaftarPesanan daftarPesanan = new DaftarPesanan();
 
-        // Data awal
+        // Data awal antrian (6 pembeli dummy non-prioritas)
         antrian.tambahAntrian("Ainra", "08224500000");
         antrian.tambahAntrian("Danra", "08224511111");
         antrian.tambahAntrian("Sanri", "08224522222");
@@ -30,13 +30,16 @@ public class Main11 {
 
             switch (pilihan) {
                 case 1:
+                    // Input data pembeli baru
                     System.out.print("Nama Pembeli : ");
                     String nama = sc.nextLine();
                     System.out.print("No HP        : ");
                     String hp = sc.nextLine();
+                    // Tanyakan apakah pembeli termasuk prioritas
                     System.out.print("Prioritas (y/t) : ");
                     String inputPrioritas = sc.nextLine().trim().toLowerCase();
                     boolean prioritas = inputPrioritas.equals("y") || inputPrioritas.equals("ya");
+                    // Jika prioritas, node akan disisipkan setelah head di dalam tambahAntrian
                     int noAntrian = antrian.tambahAntrian(nama, hp, prioritas);
                     System.out.println("Antrian berhasil ditambahkan dengan nomor: " + noAntrian);
                     break;
