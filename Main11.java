@@ -10,6 +10,9 @@ public class Main11 {
         antrian.tambahAntrian("Ainra", "08224500000");
         antrian.tambahAntrian("Danra", "08224511111");
         antrian.tambahAntrian("Sanri", "08224522222");
+        antrian.tambahAntrian("Rendra", "08224533333");
+        antrian.tambahAntrian("Vinka", "08224544444");
+        antrian.tambahAntrian("Bayu", "08224555555");
 
         int pilihan;
         do {
@@ -31,7 +34,10 @@ public class Main11 {
                     String nama = sc.nextLine();
                     System.out.print("No HP        : ");
                     String hp = sc.nextLine();
-                    int noAntrian = antrian.tambahAntrian(nama, hp);
+                    System.out.print("Prioritas (y/t) : ");
+                    String inputPrioritas = sc.nextLine().trim().toLowerCase();
+                    boolean prioritas = inputPrioritas.equals("y") || inputPrioritas.equals("ya");
+                    int noAntrian = antrian.tambahAntrian(nama, hp, prioritas);
                     System.out.println("Antrian berhasil ditambahkan dengan nomor: " + noAntrian);
                     break;
 

@@ -14,11 +14,25 @@ class AntrianPembeli {
     }
 
     int tambahAntrian(String namaPembeli, String noHp) {
+        return tambahAntrian(namaPembeli, noHp, false);
+    }
+
+    int tambahAntrian(String namaPembeli, String noHp, boolean isPrioritas) {
         nomorUrut++;
-        Pembeli baru = new Pembeli(nomorUrut, namaPembeli, noHp);
+        Pembeli baru = new Pembeli(nomorUrut, namaPembeli, noHp, isPrioritas);
         if (isEmpty()) {
             head = baru;
             tail = baru;
+        } else if (isPrioritas) {
+            // Sisipkan setelah head
+            baru.prev = head;
+            baru.next = head.next;
+            if (head.next != null) {
+                head.next.prev = baru;
+            } else {
+                tail = baru;
+            }
+            head.next = baru;
         } else {
             baru.prev = tail;
             tail.next = baru;
@@ -35,10 +49,11 @@ class AntrianPembeli {
             System.out.println("Antrian kosong.");
             return;
         }
-        System.out.printf("%-12s%-16s%s%n", "No Antrian", "Nama", "No HP");
+        System.out.printf("%-12s%-16s%-15s%s%n", "No Antrian", "Nama", "No HP", "Prioritas");
         Pembeli bantu = head;
         while (bantu != null) {
-            System.out.printf("%-12d%-16s%s%n", bantu.noAntrian, bantu.namaPembeli, bantu.noHp);
+            System.out.printf("%-12d%-16s%-15s%s%n", bantu.noAntrian, bantu.namaPembeli, bantu.noHp,
+                    bantu.isPrioritas ? "Ya" : "Tidak");
             bantu = bantu.next;
         }
     }
